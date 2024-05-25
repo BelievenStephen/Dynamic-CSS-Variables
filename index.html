@@ -16,7 +16,7 @@
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="base" type="color" name="base" value="#0000ff">
   </div>
 
   <img src="./images/astronaut.jpg">
@@ -32,23 +32,21 @@
       padding: var(--spacing);
       background: var(--base);
       filter: blur(var(--blur));
-      max-width: 100%; 
-      height: auto;
+      max-width: 100%;
+      max-height: 70vh;
     }
 
     .hl {
       color: var(--base);
     }
 
-    body {
-      text-align: center;
-      background: #193549;
-      color: white;
-      font-family: 'helvetica neue', sans-serif;
-      font-weight: 100;
-      font-size: 50px;
-      margin: 0;
-      overflow-x: hidden;
+    body { 
+        text-align: center;
+        background: #193549;
+        color: white;
+        font-family: 'helvetica neue', sans-serif;
+        font-weight: 100;
+        font-size: 50px;
     }
 
     .controls {
@@ -59,5 +57,19 @@
       width: 100px;
     }
   </style>
+
+  <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+  </script>
+
+
 </body>
 </html>
